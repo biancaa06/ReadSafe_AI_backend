@@ -14,21 +14,13 @@ nb_model = joblib.load("model/nb_model.pkl")
 bagging_model = joblib.load("model/bagging_model.pkl")
 vectorizer = joblib.load("model/tfidf_vectorizer.pkl")
 
-try:
-    stopwords.words('english')
-except LookupError:
-    nltk.download('stopwords')
+required_resources = ["stopwords", "punkt", "punkt_tab", "wordnet"]
 
-stopwords_list = stopwords.words('english')
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
-
-try:
-    nltk.data.find("tokenizers/punkt_tab")
-except LookupError:
-    nltk.download("punkt_tab")
+for resource in required_resources:
+    try:
+        nltk.data.find(resource)
+    except LookupError:
+        nltk.download(resource)
     
 lemmatizer = WordNetLemmatizer()
 
