@@ -2,6 +2,7 @@ import joblib
 import numpy as np
 import pandas as pd
 from textstat import flesch_reading_ease
+import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
@@ -13,7 +14,17 @@ nb_model = joblib.load("model/nb_model.pkl")
 bagging_model = joblib.load("model/bagging_model.pkl")
 vectorizer = joblib.load("model/tfidf_vectorizer.pkl")
 
+try:
+    stopwords.words('english')
+except LookupError:
+    nltk.download('stopwords')
+
 stopwords_list = stopwords.words('english')
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
+    
 lemmatizer = WordNetLemmatizer()
 
 def preprocess(text):
