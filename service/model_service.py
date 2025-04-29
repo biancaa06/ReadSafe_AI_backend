@@ -21,7 +21,8 @@ for resource in required_resources:
         nltk.data.find(resource)
     except LookupError:
         nltk.download(resource)
-    
+
+stopwords_list = stopwords.words("english")
 lemmatizer = WordNetLemmatizer()
 
 
