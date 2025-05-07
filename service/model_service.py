@@ -57,4 +57,4 @@ def predict_story_label(story_text):
         final_label = int(nb_out)
         final_certainty = nb_probs[nb_out - 1]
 
-    return final_label, final_certainty
+    return dt_out, nb_out, final_label, final_certainty
